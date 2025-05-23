@@ -1,0 +1,35 @@
+:root {
+  --font-family: 'Kanit', sans-serif;
+  --second-family: 'Inter', sans-serif;
+  --third-family: 'Raleway', sans-serif;
+  --font3: 'Inria Serif', sans-serif;
+}
+
+:root {
+  --black: #252525;
+  --purple: #6c63ff;
+  --purple-hover: hsla(243, 100%, 69%, 0.205);
+  --purple-focus: lab(50.42% 46.99 -77.76 / 0.501);
+  --white: #f7f7f7;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
