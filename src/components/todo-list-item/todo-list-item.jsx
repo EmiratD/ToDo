@@ -1,6 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux'; //1
-import { toggleTodoStatus, updateTodoText } from '../../store/todosSlice.js'; //2
 
 import PenSvg from '../../assets/svg-component/pen-icon-svg/pen-icon-svg.jsx';
 import DeleteIconSvg from '../../assets/svg-component/delete-icon-svg/delete-icon-svg.jsx';
@@ -11,14 +9,10 @@ import WrapperBtns from '../wrapper-btns/wrapper-btns.jsx';
 
 import './todo-list-item.css';
 
-function TodoListItem({ id, todo }) {
-  const dispatch = useDispatch(); //3
-  const [inputValue, setInputValue] = useState(todo); //4
+function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
   const inputRef = useRef(null);
-  console.log(id);
-
-  const [checked, setChecked] = useState(false);
-  const [changeTodoText, setChangeTodotext] = useState(false);
+  const [changeTodoText, setChangeTodoText] = useState(false);
+  const [inputValue, setInputValue] = useState(todo);
 
   useEffect(() => {
     if (changeTodoText) {
@@ -26,66 +20,62 @@ function TodoListItem({ id, todo }) {
     }
   }, [changeTodoText]);
 
+  const handleSave = () => {
+    updateTodoText(id, inputValue.trim() || todo); // сохранение и защита от пустого ввода
+    setChangeTodoText(false);
+  };
+
   return (
     <li className="todoListItem" id={id}>
       <label className="checkbox-wrapper">
         <input
           type="checkbox"
-          checked={checked}
-          onChange={(e) => {
-            const isChecked = e.target.checked;
-            setChecked(isChecked);
-            dispatch(toggleTodoStatus(id)); // отправляем в Redux
-          }}
+          checked={!status}
+          onChange={() => toggleTodoStatus(id)}
           className="hidden-checkbox"
         />
-        {/* //5 */}
         <span className="custom-checkbox" />
-        <span
-          htmlFor="1"
-          className={`checkbox-label ${checked && 'crossed'} ${
-            changeTodoText && 'displayNone'
-          }`}
-        >
-          {todo}
-        </span>
-        <input
-          ref={inputRef}
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          maxLength={30}
-          className={`checkbox-label red ${!changeTodoText && 'displayNone'}`}
-        />
-        {/* //6 */}
+
+        {!changeTodoText && (
+          <span className={`checkbox-label ${!status && 'crossed'}`}>
+            {todo}
+          </span>
+        )}
+
+        {changeTodoText && (
+          <input
+            ref={inputRef}
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            maxLength={30}
+            className="checkbox-label red"
+          />
+        )}
       </label>
-      {!changeTodoText && (
+
+      {!changeTodoText ? (
         <WrapperBtns
           svg1={<PenSvg />}
-          svg2={<DeleteIconSvg />}
-          fn1={setChangeTodotext}
+          svg2={<DeleteIconSvg />} // можно позже реализовать удаление
+          fn1={setChangeTodoText}
           fnArg1={true}
           fn2={() => {}}
           fnArg2={undefined}
         />
-      )}
-      {changeTodoText && (
+      ) : (
         <WrapperBtns
           svg1={<OkIcon />}
           svg2={<XIcon />}
-          fn1={() => {
-            dispatch(updateTodoText({ id, newText: inputValue }));
-            setChangeTodotext(false);
-          }}
+          fn1={handleSave}
           fnArg1={undefined}
           fn2={() => {
-            setInputValue(todo); // откат текста при отмене
-            setChangeTodotext(false);
+            setInputValue(todo); // откат к прежнему
+            setChangeTodoText(false);
           }}
           fnArg2={undefined}
         />
       )}
-      {/* 7 */}
     </li>
   );
 }
