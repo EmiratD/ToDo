@@ -1,5 +1,5 @@
 import lupa from '../../assets/svg/search.svg';
-import style from './SearchInput.module.css';
+import style from './search-Input.module.css';
 // import { useState } from 'react';
 
 function SearchInput() {

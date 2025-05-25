@@ -13,7 +13,7 @@
   text-transform: uppercase;
 }
 .button {
-  width: 193px;
+  width: 150px;
   height: 38px;
   padding: 10px;
   background: var(--purple);
@@ -36,6 +36,8 @@
   transform: translateY(-50%);
 }
 .list {
+  width: 150px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;

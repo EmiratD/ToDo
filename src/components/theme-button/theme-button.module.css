@@ -1,0 +1,9 @@
+.theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  background: #6c63ff;
+  border-radius: 5px;
+}

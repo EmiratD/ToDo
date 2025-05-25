@@ -1,4 +1,4 @@
-import style from './filterButton.module.css';
+import style from './filter-button.module.css';
 import { useState } from 'react';
 import arrow from '../../assets/svg/arrow.svg';
 

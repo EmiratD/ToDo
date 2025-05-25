@@ -1,0 +1,17 @@
+.hoverIconPath {
+  stroke: var(--gray);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+
+.wrapper {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.wrapper:hover .hoverIconPath {
+  stroke: #000fe4;
+}

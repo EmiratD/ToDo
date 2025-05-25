@@ -1,0 +1,69 @@
+.todoListItem {
+  max-width: 100%;
+  height: 43px;
+  border-bottom: 1px solid var(--purple);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 0 35px;
+}
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.hidden-checkbox {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gray);
+  background-color: var(--white);
+  position: relative;
+  transition: all 0.2s;
+  margin-right: 8px;
+}
+
+.hidden-checkbox:checked + .custom-checkbox {
+  background-color: var(--purple);
+  border-color: var(--purple-focus);
+}
+
+.hidden-checkbox:checked + .custom-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 10%;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--black);
+}
+.crossed {
+  text-decoration: line-through;
+  color: var(--gray);
+}
+
+.red {
+  color: red;
+}
+
+.displayNone {
+  display: none;
+}

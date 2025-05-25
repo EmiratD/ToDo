@@ -1,44 +1,19 @@
 import style from './Header.module.css';
-import SearchInput from '../searchInput/SearchInput';
-import FilterButton from '../filterButton/filterButton';
-
-import Moon from '../../assets/svg/moon.svg';
-import Sun from '../../assets/svg/Sun.svg';
-
-import { useState, useEffect } from 'react';
+import SearchInput from '../search-Input/search-Input';
+import FilterButton from '../filter-button/filter-button';
+import ThemeButton from '../theme-button/theme-button';
 
 const Header = () => {
-  const [theme, setTheme] = useState(false);
-
-  useEffect(() => {
-    const statusTheme = JSON.parse(localStorage.getItem('theme'));
-    if (statusTheme) {
-      setTheme(statusTheme);
-    }
-    console.log(statusTheme);
-  }, []);
-
   return (
     <header className={style.header}>
       <h1 className={style.title}>TODO LIST</h1>
-      <dir className={style.form}>
+      <div className={style.form}>
         <SearchInput />
-        <FilterButton />
-        <button
-          className={style.theme}
-          onClick={() => {
-            if (theme) {
-              setTheme(false);
-              localStorage.setItem('theme', JSON.stringify({ bool: 'false' }));
-            } else {
-              setTheme(true);
-              localStorage.setItem('theme', JSON.stringify({ bool: 'true' }));
-            }
-          }}
-        >
-          <img src={theme ? Sun : Moon} alt="theme" />
-        </button>
-      </dir>
+        <div className={style.form}>
+          <FilterButton />
+          <ThemeButton />
+        </div>
+      </div>
     </header>
   );
 };

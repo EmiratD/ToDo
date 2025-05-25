@@ -11,6 +11,7 @@
   --purple-hover: hsla(243, 100%, 69%, 0.205);
   --purple-focus: lab(50.42% 46.99 -77.76 / 0.501);
   --white: #f7f7f7;
+  --gray: #a2a2a2;
 }
 
 button {
@@ -32,4 +33,11 @@ input {
   margin: 0;
   font: inherit;
   color: inherit;
+}
+
+ul,
+li {
+  list-style: none; /* убираем маркеры */
+  margin: 0; /* убираем внешние отступы */
+  padding: 0; /* убираем внутренние отступы */
 }
