@@ -14,6 +14,11 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
   const [changeTodoText, setChangeTodoText] = useState(false);
   const [inputValue, setInputValue] = useState(todo);
 
+  // Обновляем inputValue, если значение todo изменилось извне
+  useEffect(() => {
+    setInputValue(todo);
+  }, [todo]);
+
   useEffect(() => {
     if (changeTodoText) {
       inputRef.current?.focus();
@@ -21,7 +26,8 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
   }, [changeTodoText]);
 
   const handleSave = () => {
-    updateTodoText(id, inputValue.trim() || todo); // сохранение и защита от пустого ввода
+    const trimmed = inputValue.trim();
+    updateTodoText(id, trimmed.length > 0 ? trimmed : todo);
     setChangeTodoText(false);
   };
 
@@ -36,13 +42,11 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
         />
         <span className="custom-checkbox" />
 
-        {!changeTodoText && (
+        {!changeTodoText ? (
           <span className={`checkbox-label ${!status && 'crossed'}`}>
             {todo}
           </span>
-        )}
-
-        {changeTodoText && (
+        ) : (
           <input
             ref={inputRef}
             type="text"
@@ -57,7 +61,7 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
       {!changeTodoText ? (
         <WrapperBtns
           svg1={<PenSvg />}
-          svg2={<DeleteIconSvg />} // можно позже реализовать удаление
+          svg2={<DeleteIconSvg />} // здесь можно подключить удаление
           fn1={setChangeTodoText}
           fnArg1={true}
           fn2={() => {}}
@@ -70,7 +74,7 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
           fn1={handleSave}
           fnArg1={undefined}
           fn2={() => {
-            setInputValue(todo); // откат к прежнему
+            setInputValue(todo);
             setChangeTodoText(false);
           }}
           fnArg2={undefined}

@@ -1,35 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './todo-list.module.css';
 import TodoListItem from '../todo-list-item/todo-list-item';
+import {
+  updateTodoText as updateReduxText,
+  toggleTodoStatus as toggleReduxStatus,
+} from '../../store/todosSlice';
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
-  // Загрузка из localStorage при монтировании
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-    setTodos(storedTodos);
-  }, []);
-
-  // Обновление localStorage при изменении todos
+  // Сохраняем Redux-состояние в localStorage при изменении
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  // Функция для обновления текста задачи
   const updateTodoText = (id, newText) => {
-    const updated = todos.map((todo) =>
-      todo.id === id ? { ...todo, todo: newText } : todo,
-    );
-    setTodos(updated);
+    dispatch(updateReduxText({ id, newText }));
   };
 
-  // Функция для переключения статуса задачи
   const toggleTodoStatus = (id) => {
-    const updated = todos.map((todo) =>
-      todo.id === id ? { ...todo, status: !todo.status } : todo,
-    );
-    setTodos(updated);
+    dispatch(toggleReduxStatus(id));
   };
 
   return (
@@ -39,7 +31,7 @@ function TodoList() {
           key={item.id}
           id={item.id}
           todo={item.todo}
-          status={item.status}
+          status={item.show}
           updateTodoText={updateTodoText}
           toggleTodoStatus={toggleTodoStatus}
         />
