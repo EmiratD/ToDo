@@ -1,0 +1,27 @@
+.add-todo-btn {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  bottom: 45px;
+  right: 30px;
+  background-color: var(--purple);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-icon {
+  color: white;
+  transition: filter 0.3s ease;
+}
+
+.add-todo-btn:hover {
+  background-color: var(--purple-focus);
+  filter: brightness(0.7); /* затемнение */
+}

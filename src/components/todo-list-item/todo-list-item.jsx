@@ -9,22 +9,31 @@ import WrapperBtns from '../wrapper-btns/wrapper-btns.jsx';
 
 import './todo-list-item.css';
 
-function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
+function TodoListItem({
+  id,
+  todo,
+  status,
+  updateTodoText,
+  toggleTodoStatus,
+  deleteTodo,
+}) {
   const inputRef = useRef(null);
   const [changeTodoText, setChangeTodoText] = useState(false);
   const [inputValue, setInputValue] = useState(todo);
 
-  // Обновляем inputValue, если значение todo изменилось извне
+  // Следим за изменением внешнего todo
   useEffect(() => {
     setInputValue(todo);
   }, [todo]);
 
+  // Автофокус при редактировании
   useEffect(() => {
     if (changeTodoText) {
       inputRef.current?.focus();
     }
   }, [changeTodoText]);
 
+  // Сохранение редактирования
   const handleSave = () => {
     const trimmed = inputValue.trim();
     updateTodoText(id, trimmed.length > 0 ? trimmed : todo);
@@ -61,10 +70,10 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
       {!changeTodoText ? (
         <WrapperBtns
           svg1={<PenSvg />}
-          svg2={<DeleteIconSvg />} // здесь можно подключить удаление
+          svg2={<DeleteIconSvg />}
           fn1={setChangeTodoText}
           fnArg1={true}
-          fn2={() => {}}
+          fn2={() => deleteTodo(id)} // удаление задачи
           fnArg2={undefined}
         />
       ) : (
@@ -74,7 +83,7 @@ function TodoListItem({ id, todo, status, updateTodoText, toggleTodoStatus }) {
           fn1={handleSave}
           fnArg1={undefined}
           fn2={() => {
-            setInputValue(todo);
+            setInputValue(todo); // отмена изменений
             setChangeTodoText(false);
           }}
           fnArg2={undefined}
