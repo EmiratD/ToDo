@@ -26,7 +26,7 @@ const FilterButton = () => {
     dispatch(setFilter(value));
     setShowDropdown(false);
   };
-  const styleArrowRevers = { transform: 'rotate(0.5turn)' };
+  const styleArrowRevers = { transform: 'rotate(0.5turn) translateY(+50%)' };
 
   return (
     <div className={style.filter}>
