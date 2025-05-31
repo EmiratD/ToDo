@@ -23,7 +23,7 @@
 .custom-checkbox {
   width: 18px;
   height: 18px;
-  border: 2px solid var(--gray);
+  border: 2px solid var(--main-color);
   background-color: var(--white);
   position: relative;
   transition: all 0.2s;
@@ -56,6 +56,10 @@
   color: var(--text-color);
 }
 
+.checkbox-label-dark {
+  color: var(--white);
+}
+
 @media screen and (max-width: 420px) {
   .checkbox-label {
     width: 120px;
@@ -69,8 +73,8 @@
   color: var(--gray);
 }
 
-.red {
-  color: red;
+.change {
+  color: var(--main-color);
 }
 
 .displayNone {

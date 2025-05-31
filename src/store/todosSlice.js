@@ -6,14 +6,13 @@ const getInitialTodos = () => {
   return stored
     ? JSON.parse(stored)
     : [
-        { id: 0, todo: 'Buy groceries', status: true, show: false },
-        { id: 1, todo: 'Call mom', status: true, show: true },
-        { id: 2, todo: 'Do React homework', status: true, show: true },
+        { id: 0, todo: 'Buy groceries', status: true },
+        { id: 1, todo: 'Call mom', status: true },
+        { id: 2, todo: 'Do React homework', status: true },
         {
           id: 3,
           todo: 'Read a chapter from a book',
           status: true,
-          show: false,
         },
         { id: 4, todo: 'Go for a walk', status: true },
       ];

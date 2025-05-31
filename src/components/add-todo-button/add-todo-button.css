@@ -9,7 +9,7 @@
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  z-index: 1000;
+  z-index: 998;
   display: flex;
   justify-content: center;
   align-items: center;

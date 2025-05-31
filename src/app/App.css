@@ -13,3 +13,7 @@ body {
   max-width: 750px;
   margin: 0 auto;
 }
+
+.dark-theme {
+  background-color: var(--dark-theme-background);
+}

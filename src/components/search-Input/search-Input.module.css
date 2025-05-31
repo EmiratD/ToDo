@@ -33,3 +33,9 @@
   transform: translateY(-50%);
   width: 21px;
 }
+
+.searchDark {
+  border: 1px solid var(--dark-theme-border-color);
+  background-color: var(--dark-theme-background);
+  color: var(--dark-theme-text-color);
+}

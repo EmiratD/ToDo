@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import PenSvg from '../../assets/svg-component/pen-icon-svg/pen-icon-svg.jsx';
 import DeleteIconSvg from '../../assets/svg-component/delete-icon-svg/delete-icon-svg.jsx';
@@ -17,6 +18,11 @@ function TodoListItem({
   toggleTodoStatus,
   deleteTodo,
 }) {
+  // Получаем значение темы из Redux
+  const isDark = useSelector((state) => state.theme.isDark);
+  // Отслеживаем изменеия темы
+  useEffect(() => {}, [isDark]);
+
   const inputRef = useRef(null);
   const [changeTodoText, setChangeTodoText] = useState(false);
   const [inputValue, setInputValue] = useState(todo);
@@ -52,7 +58,11 @@ function TodoListItem({
         <span className="custom-checkbox" />
 
         {!changeTodoText ? (
-          <span className={`checkbox-label ${!status && 'crossed'}`}>
+          <span
+            className={`checkbox-label ${!status && 'crossed'} ${
+              isDark && 'checkbox-label-dark'
+            }`}
+          >
             {todo}
           </span>
         ) : (
@@ -62,7 +72,7 @@ function TodoListItem({
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             maxLength={30}
-            className="checkbox-label red"
+            className="checkbox-label change"
           />
         )}
       </label>

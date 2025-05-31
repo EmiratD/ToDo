@@ -12,6 +12,9 @@
   --main-color-focus: #4c47b2a3;
   --white: #f7f7f7;
   --gray: #a2a2a2;
+  --dark-theme-background: #252525;
+  --dark-theme-text-color: #f7f7f7;
+  --dark-theme-border-color: #f7f7f7;
 }
 
 button {
