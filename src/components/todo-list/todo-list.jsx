@@ -5,7 +5,7 @@ import {
   toggleTodoStatus,
   deleteTodo,
   selectFilteredTodos,
-} from '../../store/todosSlice';
+} from '../../store/slices/todosSlice';
 
 import style from './todo-list.module.css';
 import TodoListItem from '../todo-list-item/todo-list-item';

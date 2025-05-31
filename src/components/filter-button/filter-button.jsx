@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../store/todosSlice';
+import { setFilter } from '../../store/slices/todosSlice';
 
 import style from './filter-button.module.css';
 import arrow from '../../assets/svg/arrow.svg';

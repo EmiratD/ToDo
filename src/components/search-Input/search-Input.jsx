@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchQuery } from '../../store/todosSlice';
+import { setSearchQuery } from '../../store/slices/todosSlice';
 import { useEffect } from 'react';
 
 import lupa from '../../assets/svg/search.svg';

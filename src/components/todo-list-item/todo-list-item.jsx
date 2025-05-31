@@ -26,6 +26,7 @@ function TodoListItem({
   const inputRef = useRef(null);
   const [changeTodoText, setChangeTodoText] = useState(false);
   const [inputValue, setInputValue] = useState(todo);
+  const [showBtns, setShowBtns] = useState(false);
 
   // Следим за изменением внешнего todo
   useEffect(() => {
@@ -47,7 +48,12 @@ function TodoListItem({
   };
 
   return (
-    <li className="todoListItem" id={id}>
+    <li
+      className="todoListItem"
+      id={id}
+      onMouseEnter={() => setShowBtns(true)}
+      onMouseLeave={() => setShowBtns(false)}
+    >
       <label className="checkbox-wrapper">
         <input
           type="checkbox"
@@ -78,14 +84,16 @@ function TodoListItem({
       </label>
 
       {!changeTodoText ? (
-        <WrapperBtns
-          svg1={<PenSvg />}
-          svg2={<DeleteIconSvg />}
-          fn1={setChangeTodoText}
-          fnArg1={true}
-          fn2={() => deleteTodo(id)} // удаление задачи
-          fnArg2={undefined}
-        />
+        showBtns && (
+          <WrapperBtns
+            svg1={<PenSvg />}
+            svg2={<DeleteIconSvg />}
+            fn1={setChangeTodoText}
+            fnArg1={true}
+            fn2={() => deleteTodo(id)} // удаление задачи
+            fnArg2={undefined}
+          />
+        )
       ) : (
         <WrapperBtns
           svg1={<OkIcon />}

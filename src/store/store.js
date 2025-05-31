@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import todosReducer from './todosSlice';
-import filterReducer from './filterSlice';
-import themeReducer from './themeSlice';
+import todosReducer from './slices/todosSlice';
+import filterReducer from './slices/filterSlice';
+import themeReducer from './slices/themeSlice';
 
 export const store = configureStore({
   reducer: {
