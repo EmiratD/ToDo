@@ -1,11 +1,15 @@
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 1;
+  color: inherit;
+  background: none;
+}
+.wrapper {
+  max-width: 750px;
   margin: 0 auto;
-  /* display: flex;
-  align-items: start;
-  justify-content: start;
-  min-width: 320px;
-  min-height: 100vh; */
-  /* CONTAINER */
-  width: 750px;
-  height: 100vh;
 }

@@ -26,19 +26,25 @@ const FilterButton = () => {
     dispatch(setFilter(value));
     setShowDropdown(false);
   };
+  const styleArrowRevers = { transform: 'rotate(0.5turn)' };
 
   return (
     <div className={style.filter}>
       <button
-        className={style.button}
+        className={style.buttonOpenList}
         onClick={() => setShowDropdown((prev) => !prev)}
       >
         {buttonLabel}
-        <img src={arrow} alt="↓" className={style.arrow} />
+        <img
+          src={arrow}
+          alt="↓"
+          className={style.arrow}
+          style={showDropdown ? styleArrowRevers : null}
+        />
       </button>
 
       {showDropdown && (
-        <div className={style.list}>
+        <div className={style.listBtns}>
           <button
             className={style.listItem}
             onClick={() => handleSelect('all')}

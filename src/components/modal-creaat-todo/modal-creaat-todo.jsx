@@ -23,7 +23,7 @@ function ModalForm({ onClose }) {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Новая задача..."
+            placeholder="Input your note..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             maxLength={30}
@@ -33,7 +33,9 @@ function ModalForm({ onClose }) {
             <button type="button" onClick={onClose} className="cancel-btn">
               Cancel
             </button>
-            <button type="submit">Apply</button>
+            <button type="submit" className="apply-btn">
+              Apply
+            </button>
           </div>
         </form>
       </div>

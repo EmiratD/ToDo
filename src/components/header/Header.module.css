@@ -1,5 +1,7 @@
 .header {
-  margin: 40px 0px 57px;
+  padding-top: calc(12.57092px + 3.57159vw);
+
+  margin: 0px 15px 20px 15px;
 }
 
 .form {
@@ -7,16 +9,38 @@
   flex-direction: row;
   justify-content: start;
   align-items: start;
+  padding: 5px;
   gap: 5px;
 }
 
 .title {
   font-family: var(--font-family);
-  color: var(--black);
+  color: var(--text-color);
   font-size: 26px;
   font-weight: 500;
   line-height: 39px;
   text-align: center;
   text-transform: uppercase;
   transition: color 0.2s ease-in-out;
+}
+.wrapperBts {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  gap: 5px;
+}
+
+.SearchInput {
+  flex: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .wrapperBts {
+    width: 100%;
+  }
 }
