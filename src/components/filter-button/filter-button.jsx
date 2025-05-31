@@ -1,53 +1,59 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from '../../store/todosSlice';
+
 import style from './filter-button.module.css';
-import { useState } from 'react';
 import arrow from '../../assets/svg/arrow.svg';
 
+const filterMap = {
+  all: 'All',
+  complete: 'Complete',
+  incomplete: 'Incomplete',
+};
+
 const FilterButton = () => {
-  const [show, setShow] = useState(false);
-  const [filter, setFilter] = useState('All');
+  const dispatch = useDispatch();
+  const currentFilter = useSelector((state) => state.todos.filter);
+
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [buttonLabel, setButtonLabel] = useState('All');
+
+  useEffect(() => {
+    setButtonLabel(filterMap[currentFilter]);
+  }, [currentFilter]);
+
+  const handleSelect = (value) => {
+    dispatch(setFilter(value));
+    setShowDropdown(false);
+  };
 
   return (
     <div className={style.filter}>
       <button
         className={style.button}
-        onClick={() => {
-          if (show) {
-            setShow(false);
-          } else {
-            setShow(true);
-          }
-        }}
+        onClick={() => setShowDropdown((prev) => !prev)}
       >
-        {filter}
-
+        {buttonLabel}
         <img src={arrow} alt="↓" className={style.arrow} />
       </button>
-      {show && (
+
+      {showDropdown && (
         <div className={style.list}>
           <button
             className={style.listItem}
-            onClick={() => {
-              setFilter('All');
-              setShow(false);
-            }}
+            onClick={() => handleSelect('all')}
           >
             All
           </button>
           <button
             className={style.listItem}
-            onClick={() => {
-              setFilter('Complete');
-              setShow(false);
-            }}
+            onClick={() => handleSelect('complete')}
           >
             Complete
           </button>
           <button
             className={style.listItem}
-            onClick={() => {
-              setFilter('Incomplete');
-              setShow(false);
-            }}
+            onClick={() => handleSelect('incomplete')}
           >
             Incomplete
           </button>
