@@ -6,3 +6,21 @@
   justify-content: flex-start;
   padding: 20px 0;
 }
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10;
+}
+
+.wrapper span {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 39px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: color 0.2s ease-in-out;
+}

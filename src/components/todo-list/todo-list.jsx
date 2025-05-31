@@ -10,6 +10,8 @@ import {
 import style from './todo-list.module.css';
 import TodoListItem from '../todo-list-item/todo-list-item';
 
+import DetectiveSVG from '../../assets/svg-component/Detective-svg';
+
 function TodoList() {
   const todos = useSelector(selectFilteredTodos);
   const dispatch = useDispatch();
@@ -33,6 +35,12 @@ function TodoList() {
           deleteTodo={(id) => dispatch(deleteTodo(id))}
         />
       ))}
+      {!todos.length && (
+        <div className={style.wrapper}>
+          <DetectiveSVG />
+          <span>Empty...</span>
+        </div>
+      )}
     </ul>
   );
 }
